@@ -5,6 +5,10 @@ node {
         stage('Clone repository') {
         	/* Let's make sure we have the repository cloned to our workspace */
 		checkout scm
+		
+		def mvnHome = tool 'maven-3'
+		sh "${mvnHome}/bin/mvn clean install -DskipTests"
+		stash 'working-copy'
         }
         stage('clean install'){
 		withMaven(
