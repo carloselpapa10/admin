@@ -15,7 +15,12 @@ node {
         stage('Build image') {
         	/* This builds the actual image; synonymous to
                 * docker build on the command line */
-		app = docker.build("carloselpapa10/admin")
+		docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials') {
+		    //app.push("${env.BUILD_NUMBER}")
+		    app = docker.build("carloselpapa10/admin")
+		    app.push()
+		}
+		
         }
 	stage('Push image') {
 		/* To do that add credentials http://localhost:8080/credentials/store/system/domain/
@@ -23,9 +28,6 @@ node {
 		 * First, the incremental build number from Jenkins
 		 * Second, the 'latest' tag.
 		 * Pushing multiple tags is cheap, as all the layers are reused. */
-		docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials') {
-		    //app.push("${env.BUILD_NUMBER}")
-		    app.push()
-		}
+		
 	}
 }
