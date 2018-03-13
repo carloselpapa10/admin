@@ -1,3 +1,8 @@
+agent { 
+	docker {
+            image 'maven:3-alpine'
+        }
+    }
 node {
 	def app
 
