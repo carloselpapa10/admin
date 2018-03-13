@@ -1,35 +1,16 @@
-pipeline {
-    agent { 
-	docker {
-            image 'maven:3-alpine'
-        }
+node {
+    def app
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
     }
-    stages {
-	/*
-	stage('Build') { 
-            steps {
-                sh 'mvn -B -DskipTests clean package' 
-            }
-        }
-        stage('Test') {
-            steps {
-		sh 'mvn test'
-            }
-	    //post {
-                //always {
-                    //junit 'target/surefire-reports/*.xml' 
-                //}
-            //}
-        }
-	stage('Docker Build'){
-	    steps {
-		sh 'mvn clean package docker:build'
-            }	   
-	}*/
-	stage('Delivery'){
-	    steps {
-		sh './4.Testing/deliver.sh'
-            }	   
-	}
+
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("carloselpapa10/admin")
     }
 }
