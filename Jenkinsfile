@@ -7,10 +7,10 @@ node {
         checkout scm
     }
     stage('clean install'){
-        //agent { docker 'maven:3-alpine' } 
+         agent { docker 'maven:3-alpine' } 
         
           echo 'Hello, Maven'
-            //sh 'mvn --version'
+          sh 'mvn --version'
         
     }
     stage('Build image') {
