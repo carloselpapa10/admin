@@ -8,10 +8,10 @@ node {
     }
     stage('clean install'){
         //agent { docker 'maven:3-alpine' } 
-        steps {
-            echo 'Hello, Maven'
+        
+          echo 'Hello, Maven'
             //sh 'mvn --version'
-        }
+        
     }
     stage('Build image') {
         /* This builds the actual image; synonymous to
