@@ -16,7 +16,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker run hello-world'
+        sh 'docker build -t carloselpapa10/admin:latest .'
       }
     }
   }
