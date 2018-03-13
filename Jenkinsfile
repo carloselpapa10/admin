@@ -18,7 +18,7 @@ node {
 		docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials') {
 		    //app.push("${env.BUILD_NUMBER}")
 		    app = docker.build("carloselpapa10/admin")
-		    app.push()
+		    app.pull("carloselpapa10/admin")
 		}
 		
         }
