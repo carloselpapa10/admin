@@ -23,7 +23,7 @@ pipeline {
       agent any
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'Hardtech-c01', usernameVariable: 'carloselpapa10')]) {
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh "docker login -u carloselpapa10 -p Hardtech-c01"
           sh 'docker push carloselpapa10/admin:latest'
         }
       }
