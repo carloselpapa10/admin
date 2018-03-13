@@ -22,8 +22,8 @@ pipeline {
     stage('Docker Push') {
       agent any
       steps {
-        withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'Hardtech-c01', usernameVariable: 'carloselpapa10')]) {
-          sh "docker login -u carloselpapa10 -p Hardtech-c01"
+        withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'docker-hub-pass', usernameVariable: 'docker-hub-usr')]) {
+          sh "docker login -u docker-hub-usr -p docker-hub-pass"
           sh 'docker push carloselpapa10/admin:latest'
         }
       }
